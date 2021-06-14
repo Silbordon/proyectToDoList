@@ -5,7 +5,8 @@
 }
 
 body {
-  background-image: linear-gradient(120deg, #150169 0%, #000000 100%);
+  background-color: #172c86;
+  background-image: linear-gradient(225deg, #172c86 7%, #13143b 36%, #2fb389 86%, #ffffff 99%, #ffffff 100%);
   color: white;
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
@@ -99,6 +100,9 @@ form button:hover {
   opacity: 0.5;
 }
 
+.completed-icon{
+  background-color: #6b6b6d;
+}
 /*CUSTOM SELECTOR */
 select {
   -webkit-appearance: none;
