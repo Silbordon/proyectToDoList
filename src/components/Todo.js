@@ -1,8 +1,15 @@
+import {bd} from '../firebase-config';
+
 const Todo = ({ todo, setTodos, todos }) => {
 
 
     const deleteHandler = () => {
-        setTodos(todos.filter(tarea => tarea.id != todo.id))
+        // setTodos(todos.filter(tarea => tarea.id !== todo.id))
+        bd.collection("todos").doc(todo.id).delete().then(() => {
+            console.log("Document successfully deleted!");
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
     }
 
 
@@ -15,9 +22,21 @@ const Todo = ({ todo, setTodos, todos }) => {
             }
             return item;
         }))
+        editarCompleted(todo)
     };
 
 
+    const editarCompleted = (tarea) =>{
+        bd.collection("todos").doc(tarea.id).set({
+            ...tarea, completed: !tarea.completed
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    }
     return (
         <div className="todo">
             <li className={`todo-item ${todo.completed ? 'completed' : ''}`}>{todo.text}</li>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Form from './components/Form'
 import TodoList from './components/TodoList'
+import {bd} from './firebase-config';
 
 function App() {
 
@@ -11,17 +12,31 @@ function App() {
   const [filteredTodos, setFilteredTodos] = useState([]);
 
 
+  const traerDesdeFirebase = () =>{
+    bd.collection("todos").get().then((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, " => ", doc.data());
+          docs.push({...doc.data(), id:doc.id})
+      });
+      setTodos(docs);
+  });
+  }
+
+
   useEffect(() => {
-    const getLocalTodos = () => {
-      if (localStorage.getItem('todos') === null) {
-        localStorage.setItem('todos', JSON.stringify(todos))
-      } else {
-        const todoLocal = JSON.parse(localStorage.getItem('todos'))
-        setTodos(todoLocal)
-      }
-    }
-    getLocalTodos();
-  }, []);
+    // const getLocalTodos = () => {
+    //   if (localStorage.getItem('todos') === null) {
+    //     localStorage.setItem('todos', JSON.stringify(todos))
+    //   } else {
+    //     const todoLocal = JSON.parse(localStorage.getItem('todos'))
+    //     setTodos(todoLocal)
+    //   }
+    // }
+    // getLocalTodos();
+    traerDesdeFirebase();
+  },[todos]);
 
 
   useEffect(() => {
@@ -40,12 +55,12 @@ function App() {
     }
 
     //Local storage
-    const saveLocalTodos = () => {
-      localStorage.setItem('todos', JSON.stringify(todos))
-    }
+    // const saveLocalTodos = () => {
+    //   localStorage.setItem('todos', JSON.stringify(todos))
+    // }
 
     filteredHandler();
-    saveLocalTodos();
+    // saveLocalTodos();
   }, [status, todos])
 
 

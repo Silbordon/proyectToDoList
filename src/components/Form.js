@@ -1,3 +1,5 @@
+import {bd} from '../firebase-config';
+
 const Form = ({ setTodos, todos, inputText, setInputText, setStatus }) => {
     // const {setTodos} = props
 
@@ -8,6 +10,11 @@ const Form = ({ setTodos, todos, inputText, setInputText, setStatus }) => {
             completed: false,
             id: Math.random() * 10000
         }])
+        guardarFirebase({
+            text: inputText,
+            completed: false,
+            id: Math.random() * 10000
+          })
         setInputText('')
     }
 
@@ -19,6 +26,20 @@ const Form = ({ setTodos, todos, inputText, setInputText, setStatus }) => {
     const statusHandler = (e) => {
         setStatus(e.target.value);
     }
+
+
+    //firebase
+    const guardarFirebase = tarea =>{
+        // Add a new document with a generated id.
+bd.collection("todos").add(tarea)
+.then((docRef) => {
+    console.log("Document written with ID: ", docRef.id);
+})
+.catch((error) => {
+    console.error("Error adding document: ", error);
+});
+    }
+
 
     return (
         <form>
