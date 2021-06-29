@@ -13,30 +13,16 @@ function App() {
 
 
   const traerDesdeFirebase = () =>{
-    bd.collection("todos").get().then((querySnapshot) => {
+    bd.collection("todos").onSnapshot((querySnapshot) => {
       const docs = [];
       querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          // console.log(doc.id, " => ", doc.data());
           docs.push({...doc.data(), id:doc.id})
       });
       setTodos(docs);
   });
   }
 
-
-  useEffect(() => {
-    // const getLocalTodos = () => {
-    //   if (localStorage.getItem('todos') === null) {
-    //     localStorage.setItem('todos', JSON.stringify(todos))
-    //   } else {
-    //     const todoLocal = JSON.parse(localStorage.getItem('todos'))
-    //     setTodos(todoLocal)
-    //   }
-    // }
-    // getLocalTodos();
-    traerDesdeFirebase();
-  },[todos]);
+  useEffect(traerDesdeFirebase, [])
 
 
   useEffect(() => {
