@@ -53,8 +53,9 @@ function App() {
   return (
     <div>
       <header>
-        <h1>TODO LIST</h1>
+        <h1>- Todo List -</h1>
       </header>
+      <div className="container">
       <Form
         todos={todos}
         setTodos={setTodos}
@@ -67,6 +68,7 @@ function App() {
         setTodos={setTodos}
         filteredTodos={filteredTodos}
       />
+      </div>
     </div>
   );
 }

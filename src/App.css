@@ -5,15 +5,31 @@
 }
 
 body {
-  background-color: #172c86;
-  background-image: linear-gradient(225deg, #172c86 7%, #13143b 36%, #2fb389 86%, #ffffff 99%, #ffffff 100%);
+  background-color: #172b8613;
+  background-image: url('https://preview.pixlr.com/images/800wm/1035/1/1035117763.jpg');
+  /* background-image: linear-gradient(225deg, #172c86 7%, #13143b 36%, #2fb389 86%, #ffffff 99%, #ffffff 100%); */
   color: white;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   min-height: 100vh;
 }
 
+
 header {
-  font-size: 2rem;
+  font-size: 2.0rem; 
+}
+
+h1{
+  box-shadow: 5px 10px 2px #4b4848;
+  color: black;
+  background-color: #afaaaa;
+}
+
+.container{
+  background-color: rgba(0, 0, 0, 0.849);
+  padding-bottom: 100px;
+  width: 800px;
+  margin: auto;
+  border-radius: 20px;
 }
 
 header,
@@ -78,9 +94,11 @@ form button:hover {
   cursor: pointer;
   font-size: 1rem;
 }
+
 .complete-btn {
-  background: rgb(11, 212, 162);
+  background: rgba(224, 154, 25, 0.658);
 }
+
 .todo-item {
   padding: 0rem 0.5rem;
 }
@@ -103,6 +121,13 @@ form button:hover {
 .completed-icon{
   background-color: #6b6b6d;
 }
+
+form input::placeholder {
+  color: rgba(99, 83, 13, 0.856);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 /*CUSTOM SELECTOR */
 select {
   -webkit-appearance: none;
@@ -120,12 +145,15 @@ select {
   margin: 1rem;
   position: relative;
   overflow: hidden;
+
 }
 select {
   color: #424141;
   font-family: "Poppins", sans-serif;
+  font-size: 1rem;
   cursor: pointer;
   width: 12rem;
+  font-style: italic;
 }
 /* Arrow */
 .select::after {
@@ -142,9 +170,66 @@ select {
 .select:hover{
   background: #6b6a6a;
 }
-/* Transition */
-/*
-.select:hover::after {
-  transform: scale(1.5);
+
+
+
+/* Responsive */
+
+@media (max-width:780px){
+header{
+  font-size: 1rem;
 }
-*/
+
+
+.container{
+  padding-top: 20px;
+  width: 90%;
+  padding-bottom: 20px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+select{
+  width: 14.5rem;
+  font-size: .9rem;
+}
+.filter-todo{
+  padding: 13px;
+}
+.select::after{
+  padding: 13px;
+}
+
+form input{
+  width: 12.5rem;
+  font-size: 1.3rem;
+}
+form button{
+  font-size: 1.3rem;
+}
+
+.todo{
+  font-size: 0.9rem;
+  width: 90%;
+}
+
+.complete-btn, .trash-btn{
+  font-size: 0.8rem;
+}
+
+
+}
+
+@media (max-width:400px){
+
+  .container{
+    padding-top: 30px;
+  }
+
+  
+}

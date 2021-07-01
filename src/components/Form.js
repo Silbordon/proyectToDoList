@@ -1,10 +1,26 @@
 import {bd} from '../firebase-config';
+import { useState } from 'react';
 
 const Form = ({ setTodos, todos, inputText, setInputText, setStatus }) => {
     // const {setTodos} = props
 
+const [error, setError] = useState(false)
+
     const submitTodoHandler = e => {
+     
+      
+
         e.preventDefault();
+
+        if (inputText.trim().length === 0) {
+            setError(true);
+            setTimeout(() => {
+              setError(false);
+            }, 1200);
+            return;
+          }
+          setError(false);
+
         setTodos([...todos, {
             text: inputText,
             completed: false,
@@ -43,20 +59,25 @@ bd.collection("todos").add(tarea)
 
     return (
         <form>
+   
+            <div>
             <input
                 onChange={inputTextHandler}
                 type="text"
                 value={inputText}
                 className="todo-input"
+                placeholder={error ? "¡Escríbeme!" : "¿Qué debes hacer?"}
+
             />
             <button
-                disabled={inputText.trim().length === 0}
+                // disabled={inputText.trim().length === 0}
                 onClick={submitTodoHandler}
                 className="todo-button"
                 type="submit"
             >
                 <i className="fas fa-plus-square"></i>
             </button>
+            </div>
             <div className="select">
                 <select
                     name="todos"
@@ -68,6 +89,9 @@ bd.collection("todos").add(tarea)
                     <option value="uncompleted">Incompletas</option>
                 </select>
             </div>
+            
+            
+
         </form>
     );
 }
