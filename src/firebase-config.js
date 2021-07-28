@@ -3,12 +3,12 @@
 
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyBnOTyGyxiUevS1dWNvSjmedxT0msJogV0",
-    authDomain: "todo-list-646b9.firebaseapp.com",
-    projectId: "todo-list-646b9",
-    storageBucket: "todo-list-646b9.appspot.com",
-    messagingSenderId: "235274986043",
-    appId: "1:235274986043:web:54791fd6183b1f68ef321e"
+    apiKey: "AIzaSyCpL0-2LiW9FP4qdvdyDkHi55OL6D9yocw",
+    authDomain: "lista-tareas-82854.firebaseapp.com",
+    projectId: "lista-tareas-82854",
+    storageBucket: "lista-tareas-82854.appspot.com",
+    messagingSenderId: "1061044930319",
+    appId: "1:1061044930319:web:81d61d84cce263dd73207a"
   };
   // Initialize Firebase
   const fb = firebase.initializeApp(firebaseConfig);
